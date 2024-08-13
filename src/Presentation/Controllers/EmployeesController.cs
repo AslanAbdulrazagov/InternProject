@@ -19,7 +19,7 @@ public class EmployeesController : ControllerBase
 
 
     [HttpPost]
-
+    [Authorize]
     public async Task<IActionResult> Create(EmployeePostDto dto)
     {
 
@@ -27,12 +27,14 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(EmployeePutDto dto)
     {
         return Ok(await _employeeService.UpdateAsync(dto));
     }
+
     [HttpGet]
-    [Authorize(Roles ="Admin")]
+    [Authorize]
     public async Task<IActionResult> GetAll()
     {
         var employees = await _employeeService.GetAllAsync();
@@ -41,6 +43,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<IActionResult> Get([FromRoute] int id)
     {
         var employee = await _employeeService.GetByIdAsync(id);
@@ -49,6 +52,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
         return Ok(await _employeeService.DeleteAsync(id));

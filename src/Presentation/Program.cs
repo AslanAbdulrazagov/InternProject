@@ -66,7 +66,7 @@ public class Program
 
         app.UseHttpsRedirection();
 
-        //app.AddExceptionHandlerService();
+        app.AddExceptionHandlerService();
 
         app.UseAuthentication();
         app.UseAuthorization();
