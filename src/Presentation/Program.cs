@@ -1,14 +1,8 @@
 namespace Presentation;
-using DataAccess.ServiceRegistration;
 using Business.ServiceRegistration;
-using Presentation.Extensions;
-using Business.Dtos;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using Business.Validations.AddressValidations;
-using Business.Validations.DepartmentValidations;
-using Business.Validations.EmployeeValidations;
+using DataAccess.ServiceRegistration;
 using Microsoft.OpenApi.Models;
+using Presentation.Extensions;
 
 public class Program
 {

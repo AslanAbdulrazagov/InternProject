@@ -1,9 +1,7 @@
 ﻿using Business.Dtos;
 using Business.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace Presentation.Controllers
 {
