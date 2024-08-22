@@ -6,3 +6,6 @@ services:
     build:
       context: .
       dockerfile: src/Presentation/Dockerfile
+
+  presentationdb:
+    image: mcr.microsoft.com/mssql/server:2019-latest

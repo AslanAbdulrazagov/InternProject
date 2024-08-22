@@ -4,10 +4,16 @@ services:
   presentation:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - "DatabaseSettings:ConnectionString:Server=presentationdb;Port=1433;Database=employee;User Id=sa;Password=Aslan!123456789;"
+    depends_on:
+      - presentationdb
     ports:
-      - "80"
-      - "443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - "8002:80"
+  presentationdb:
+    container_name: presentationdb
+    environment:
+        - "MSSQL_SA_PASSWORD=Aslan!123456789"
+        - ACCEPT_EULA=Y
+    restart: always
+    ports:
+        -  "1433:1433"
