@@ -4,6 +4,7 @@ using DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240827170845_UsersSeed")]
+    partial class UsersSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,7 +197,7 @@ namespace DataAccess.Migrations
                             EmailConfirmed = true,
                             Fullname = "User",
                             LockoutEnabled = false,
-                            NormalizedEmail = "USER@GMAIL.COM",
+                            NormalizedEmail = "TEST@UP.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEDdLO1SLo+fL4dtyowe2YICHHWdqr3qZSPnnGzVGyXAm9ApcNEXwiErejIkt92ntGA==",
                             PhoneNumber = "+994505555555",
                             PhoneNumberConfirmed = false,
