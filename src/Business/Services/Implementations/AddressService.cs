@@ -8,12 +8,14 @@ namespace Business.Services.Implementations
     public class AddressService : IAddressService
     {
         private readonly IAddressRepository _repository;
+        private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
 
-        public AddressService(IAddressRepository repository, IMapper mapper)
+        public AddressService(IAddressRepository repository, IMapper mapper, IEmployeeRepository employeeRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _employeeRepository = employeeRepository;
         }
 
         public async Task<ResultDto> CreateAsync(AddressPostDto dto)
@@ -23,10 +25,23 @@ namespace Business.Services.Implementations
             //if (isExist)
             //    throw new AlreadyExistException($"{dto.Street} this street already exists");
 
+            var employee = await _employeeRepository.GetSingleAsync(x => x.Id == dto.EmployeId);
+
+            if (employee is null)
+                throw new NotFoundException();
+
+            if (employee.AddressId is { })
+                throw new AlreadyExistException("This employee's address is already exist");
+
             var address = _mapper.Map<Address>(dto);
+
+            employee.Address = address;
 
             await _repository.CreateAsync(address);
             await _repository.SaveChangesAsync();
+
+             _employeeRepository.Update(employee);
+            await _employeeRepository.SaveChangesAsync(); 
 
             return new("Address successfully added");
         }
@@ -37,6 +52,20 @@ namespace Business.Services.Implementations
 
             if (address is null)
                 throw new NotFoundException();
+
+
+            var employee= await _employeeRepository.GetSingleAsync(x=>x.Id == address.EmployeId);
+
+
+            if(employee is null)
+                throw new NotFoundException();
+
+
+            employee.AddressId = null;
+
+
+            _employeeRepository.Update(employee);
+            await _employeeRepository.SaveChangesAsync();
 
             _repository.Delete(address);
             await _repository.SaveChangesAsync();

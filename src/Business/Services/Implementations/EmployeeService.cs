@@ -3,6 +3,7 @@ using Business.Exceptions;
 using Business.Services.Interfaces;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Business.Services.Implementations;
 
@@ -90,6 +91,11 @@ public class EmployeeService : IEmployeeService
         return result;
 
 
+    }
+
+    public async Task<bool> IsExistAsync(Expression<Func<Employee, bool>> expression)
+    {
+        return await _repository.IsExistAsync(expression);
     }
 
     public async Task<ResultDto> UpdateAsync(EmployeePutDto dto)

@@ -45,7 +45,7 @@ namespace Business.Services.Implementations
 
         public async Task<List<DepartmentGetDto>> GetAllAsync()
         {
-            var departments = await _repository.GetAll().ToListAsync();
+            var departments = await _repository.GetAll("Employees").ToListAsync();
             var result = _mapper.Map<List<DepartmentGetDto>>(departments);
             return result;
         }

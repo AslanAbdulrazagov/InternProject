@@ -12,6 +12,6 @@ public class EmployeeGetDto
     public string PhoneNumber { get; set; } = null!;
     public DepartmentRelationDto Department { get; set; } = null!;
     public int DepartmentId { get; set; }
-    public Address? Address { get; set; } = null!;
+    public AddressGetDto? Address { get; set; } = null!;
     public int? AddressId { get; set; }
 }
