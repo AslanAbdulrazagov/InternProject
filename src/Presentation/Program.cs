@@ -1,6 +1,9 @@
 namespace Presentation;
 using Business.ServiceRegistration;
+using DataAccess.Contexts;
 using DataAccess.ServiceRegistration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Presentation.Extensions;
 
@@ -17,6 +20,7 @@ public class Program
 
         builder.Services.AddDataServices(builder.Configuration);
         builder.Services.AddBusinessServices(builder.Configuration);
+
 
 
 
@@ -57,6 +61,12 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        using (var ts = app.Services.CreateScope())
+        {
+            var t =ts.ServiceProvider.GetRequiredService<AppDbContext>();
+            t.Database.Migrate();
+        }
+
 
         app.UseHttpsRedirection();
 
@@ -66,7 +76,8 @@ public class Program
         app.UseAuthorization();
 
 
-        app.MapControllers();
+        app.MapControllers().AllowAnonymous();
+
 
         app.Run();
     }

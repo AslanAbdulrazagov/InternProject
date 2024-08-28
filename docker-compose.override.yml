@@ -4,7 +4,7 @@ services:
   presentation:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString:Server=presentationdb;Port=1433;Database=employee;User Id=sa;Password=Aslan!123456789;"
+      - "DatabaseSettings:ConnectionString:Server=presentationdb;Port=1433;Database=myDataBase;User Id=sa;Password=Aslan!123456789;TrustServerCertificate=true;"
     depends_on:
       - presentationdb
     ports:
