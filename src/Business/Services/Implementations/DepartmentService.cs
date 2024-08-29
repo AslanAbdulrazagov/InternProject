@@ -52,7 +52,7 @@ namespace Business.Services.Implementations
 
         public async Task<DepartmentGetDto> GetByIdAsync(int id)
         {
-            var existDepartment = await _repository.GetSingleAsync(x => x.Id == id);
+            var existDepartment = await _repository.GetSingleAsync(x => x.Id == id, "Employees");
 
             if (existDepartment is null)
                 throw new NotFoundException();

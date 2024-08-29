@@ -15,7 +15,7 @@ public class AuthService : IAuthService
 
     private readonly UserManager<AppUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
-    /* private readonly SignInManager<AppUser> _signInManager;*/ //remove
+   
     private readonly IMapper _mapper;
     private readonly ITokenHelper _tokenHelper;
 
@@ -23,8 +23,6 @@ public class AuthService : IAuthService
     {
         _userManager = userManager;
         _roleManager = roleManager;
-        //_signInManager = signInManager;
-
         _mapper = mapper;
         _tokenHelper = tokenHelper;
     }
@@ -77,7 +75,6 @@ public class AuthService : IAuthService
 
         };
 
-
         return claims;
     }
 
@@ -89,6 +86,5 @@ public class AuthService : IAuthService
             await _roleManager.CreateAsync(new() { Name = role.ToString() });
         }
     }
-
 
 }

@@ -64,7 +64,7 @@ public class Program
         using (var ts = app.Services.CreateScope())
         {
             var t =ts.ServiceProvider.GetRequiredService<AppDbContext>();
-            t.Database.Migrate();
+           t.Database.Migrate();
         }
 
 
@@ -76,7 +76,7 @@ public class Program
         app.UseAuthorization();
 
 
-        app.MapControllers().AllowAnonymous();
+        app.MapControllers();
 
 
         app.Run();

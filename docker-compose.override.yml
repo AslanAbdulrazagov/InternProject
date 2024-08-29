@@ -4,7 +4,7 @@ services:
   presentation:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString:Server=presentationdb;Port=1433;Database=myDataBase;User Id=sa;Password=Aslan!123456789;TrustServerCertificate=true;"
+      - "DatabaseSettings:ConnectionString:Server=presentationdb;Port=4022;Database=myDataBase;User Id=sa;Password=Aslan!123456789;TrustServerCertificate=true;"
     depends_on:
       - presentationdb
     ports:
@@ -16,4 +16,4 @@ services:
         - ACCEPT_EULA=Y
     restart: always
     ports:
-        -  "1433:1433"
+        -  "4022:1433"

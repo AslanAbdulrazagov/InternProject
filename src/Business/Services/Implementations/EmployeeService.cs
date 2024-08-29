@@ -22,7 +22,6 @@ public class EmployeeService : IEmployeeService
     {
         var isExist = await _repository.IsExistAsync(x => x.Email.ToLower() == dto.Email.ToLower());
 
-
         if (isExist)
             throw new AlreadyExistException($"{dto.Email} this email is already exist");
 
@@ -30,7 +29,6 @@ public class EmployeeService : IEmployeeService
 
         await _repository.CreateAsync(employee);
         await _repository.SaveChangesAsync();
-
 
         return new("Employee successfully added");
     }
@@ -82,7 +80,7 @@ public class EmployeeService : IEmployeeService
 
     public async Task<EmployeeGetDto> GetByIdAsync(int id)
     {
-        var existEmployee = await _repository.GetSingleAsync(x => x.Id == id);
+        var existEmployee = await _repository.GetSingleAsync(x => x.Id == id, "Department", "Address");
 
         if (existEmployee is null)
             throw new NotFoundException();
