@@ -64,12 +64,13 @@ namespace DataAccess.Helpers
                 Email = "user@gmail.com",
                 LockoutEnabled = false,
                 PhoneNumber = "+994505555555",
-                NormalizedEmail= "USER@GMAIL.COM",
+                NormalizedEmail = "USER@GMAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash= "AQAAAAEAACcQAAAAEDdLO1SLo+fL4dtyowe2YICHHWdqr3qZSPnnGzVGyXAm9ApcNEXwiErejIkt92ntGA==",
-                 SecurityStamp= "TPDGZHBNWJDLPNAI5U746VHYPV4KJKRQ",
-                ConcurrencyStamp= "33e31b8f-14a0-4b0e-86d4-7c877c1ae93e",
+                PasswordHash = "AQAAAAEAACcQAAAAEDdLO1SLo+fL4dtyowe2YICHHWdqr3qZSPnnGzVGyXAm9ApcNEXwiErejIkt92ntGA==",
+                SecurityStamp = "TPDGZHBNWJDLPNAI5U746VHYPV4KJKRQ",
+                ConcurrencyStamp = "33e31b8f-14a0-4b0e-86d4-7c877c1ae93e",
                 Fullname = "User"
+                
 
             };
 

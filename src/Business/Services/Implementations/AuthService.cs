@@ -6,6 +6,7 @@ using Business.Services.Interfaces;
 using Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace Business.Services.Implementations;
@@ -58,7 +59,7 @@ public class AuthService : IAuthService
         {
             throw new LoginException();
         }
-        var claims = (await _userManager.GetClaimsAsync(user)).ToList();
+        var claims =  await ClaimsCreateAsync(user);
         var accessToken = _tokenHelper.CreateToken(claims);
         return accessToken;
     }
